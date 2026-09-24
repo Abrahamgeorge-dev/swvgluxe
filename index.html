@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>SWVGLUXE | Streetwear Fashion</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ================================
+         NAVIGATION
+    ================================= -->
+
+    <header>
+
+        <nav>
+
+            <div class="logo">
+                SWVGLUXE<span>.</span>
+            </div>
+
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="#home">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#collection">
+                        Collection
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#about">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#contact">
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+
+
+            <div class="nav-accent"></div>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ================================
+         MAIN
+    ================================= -->
+
+    <main>
+
+
+        <!-- ================================
+             HERO
+        ================================= -->
+
+        <section
+            id="home"
+            class="hero"
+        >
+
+            <div class="hero-shape red-shape"></div>
+
+            <div class="hero-shape yellow-shape"></div>
+
+
+            <div class="hero-content">
+
+                <p class="tagline">
+                    STREETWEAR • CULTURE • STYLE
+                </p>
+
+
+                <h1>
+
+                    DEFINE
+
+                    <span>
+                        YOUR STYLE.
+                    </span>
+
+                </h1>
+
+
+                <p class="hero-text">
+
+                    Bold pieces. Urban energy.
+                    Your identity, your statement.
+
+                </p>
+
+
+                <a
+                    href="#collection"
+                    class="hero-button"
+                >
+                    SHOP COLLECTION
+                </a>
+
+            </div>
+
+
+            <div class="hero-badge">
+
+                SWVG<br>
+                LUXE
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================
+             COLLECTION
+        ================================= -->
+
+        <section
+            id="collection"
+            class="collection"
+        >
+
+
+            <div class="section-heading">
+
+                <p class="section-label">
+                    SWVGLUXE COLLECTION
+                </p>
+
+
+                <h2>
+
+                    FEATURED
+
+                    <span>
+                        PIECES.
+                    </span>
+
+                </h2>
+
+            </div>
+
+
+
+            <div class="products">
+
+
+
+                <!-- ==========================
+                     PRODUCT 1
+                     ROUNDNECK
+                =========================== -->
+
+                <article class="product-card">
+
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/redroundneck.jpg"
+                            alt="SWVGLUXE Red Roundneck"
+                        >
+
+                    </div>
+
+
+
+                    <div class="product-info">
+
+                        <p class="product-number">
+                            01 / ESSENTIAL
+                        </p>
+
+
+                        <h3>
+                            SWVGLUXE ROUNDNECK
+                        </h3>
+
+
+                        <span class="product-description">
+                            Premium Streetwear Roundneck
+                        </span>
+
+
+                        <strong class="price">
+                            ₦25,000
+                        </strong>
+
+
+                        <p class="availability">
+                            ● Available
+                        </p>
+
+
+                        <!-- SIZE -->
+
+                        <label for="roundneck-size">
+                            SIZE
+                        </label>
+
+                        <select
+                            id="roundneck-size"
+                            class="product-select"
+                        >
+
+                            <option value="Small">
+                                S
+                            </option>
+
+                            <option value="Medium">
+                                M
+                            </option>
+
+                            <option value="Large">
+                                L
+                            </option>
+
+                            <option value="Extra Large">
+                                XL
+                            </option>
+
+                        </select>
+
+
+
+                        <!-- COLOR -->
+
+                        <label for="roundneck-color">
+                            COLOR
+                        </label>
+
+                        <select
+                            id="roundneck-color"
+                            class="product-select"
+                        >
+
+                            <option value="Red">
+                                Red
+                            </option>
+
+                            <option value="Black">
+                                Black
+                            </option>
+
+                            <option value="White">
+                                White
+                            </option>
+
+                        </select>
+
+
+
+                        <button
+                            class="order-button"
+                            onclick="orderProduct(
+                                'SWVGLUXE Roundneck',
+                                '25000',
+                                'roundneck-size',
+                                'roundneck-color'
+                            )"
+                        >
+
+                            ORDER NOW →
+
+                        </button>
+
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ==========================
+                     PRODUCT 2
+                     ARMLESS
+                =========================== -->
+
+                <article class="product-card">
+
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/armless.jpg"
+                            alt="SWVGLUXE Armless"
+                        >
+
+                    </div>
+
+
+
+                    <div class="product-info">
+
+                        <p class="product-number">
+                            02 / URBAN
+                        </p>
+
+
+                        <h3>
+                            SWVGLUXE ARMLESS
+                        </h3>
+
+
+                        <span class="product-description">
+                            Urban Armless Collection
+                        </span>
+
+
+                        <strong class="price">
+                            ₦20,000
+                        </strong>
+
+
+                        <p class="availability">
+                            ● Available
+                        </p>
+
+
+                        <!-- SIZE -->
+
+                        <label for="armless-size">
+                            SIZE
+                        </label>
+
+                        <select
+                            id="armless-size"
+                            class="product-select"
+                        >
+
+                            <option value="Small">
+                                S
+                            </option>
+
+                            <option value="Medium">
+                                M
+                            </option>
+
+                            <option value="Large">
+                                L
+                            </option>
+
+                            <option value="Extra Large">
+                                XL
+                            </option>
+
+                        </select>
+
+
+
+                        <!-- COLOR -->
+
+                        <label for="armless-color">
+                            COLOR
+                        </label>
+
+                        <select
+                            id="armless-color"
+                            class="product-select"
+                        >
+
+                            <option value="Black">
+                                Black
+                            </option>
+
+                            <option value="White">
+                                White
+                            </option>
+
+                            <option value="Red">
+                                Red
+                            </option>
+
+                        </select>
+
+
+
+                        <button
+                            class="order-button"
+                            onclick="orderProduct(
+                                'SWVGLUXE Armless',
+                                '20000',
+                                'armless-size',
+                                'armless-color'
+                            )"
+                        >
+
+                            ORDER NOW →
+
+                        </button>
+
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ==========================
+                     PRODUCT 3
+                     LONG SLEEVE
+                =========================== -->
+
+                <article class="product-card">
+
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/longsleeve.jpg"
+                            alt="SWVGLUXE Long Sleeve"
+                        >
+
+                    </div>
+
+
+
+                    <div class="product-info">
+
+                        <p class="product-number">
+                            03 / PREMIUM
+                        </p>
+
+
+                        <h3>
+                            SWVGLUXE LONG SLEEVE
+                        </h3>
+
+
+                        <span class="product-description">
+                            Premium Long Sleeve Streetwear
+                        </span>
+
+
+                        <strong class="price">
+                            ₦30,000
+                        </strong>
+
+
+                        <p class="availability">
+                            ● Available
+                        </p>
+
+
+                        <!-- SIZE -->
+
+                        <label for="longsleeve-size">
+                            SIZE
+                        </label>
+
+                        <select
+                            id="longsleeve-size"
+                            class="product-select"
+                        >
+
+                            <option value="Small">
+                                S
+                            </option>
+
+                            <option value="Medium">
+                                M
+                            </option>
+
+                            <option value="Large">
+                                L
+                            </option>
+
+                            <option value="Extra Large">
+                                XL
+                            </option>
+
+                        </select>
+
+
+
+                        <!-- COLOR -->
+
+                        <label for="longsleeve-color">
+                            COLOR
+                        </label>
+
+                        <select
+                            id="longsleeve-color"
+                            class="product-select"
+                        >
+
+                            <option value="Black">
+                                Black
+                            </option>
+
+                            <option value="White">
+                                White
+                            </option>
+
+                            <option value="Red">
+                                Red
+                            </option>
+
+                        </select>
+
+
+
+                        <button
+                            class="order-button"
+                            onclick="orderProduct(
+                                'SWVGLUXE Long Sleeve',
+                                '30000',
+                                'longsleeve-size',
+                                'longsleeve-color'
+                            )"
+                        >
+
+                            ORDER NOW →
+
+                        </button>
+
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================
+             BRAND STATEMENT
+        ================================= -->
+
+        <section class="statement">
+
+            <div class="statement-line"></div>
+
+
+            <p>
+
+                WEAR THE
+
+                <span>
+                    STATEMENT.
+                </span>
+
+            </p>
+
+
+            <div class="statement-line"></div>
+
+        </section>
+
+
+
+        <!-- ================================
+             ABOUT
+        ================================= -->
+
+        <section
+            id="about"
+            class="about"
+        >
+
+            <div class="about-number">
+                02
+            </div>
+
+
+            <div class="about-content">
+
+                <p class="section-label">
+                    ABOUT SWVGLUXE
+                </p>
+
+
+                <h2>
+
+                    MORE THAN
+
+                    <span>
+                        CLOTHING.
+                    </span>
+
+                </h2>
+
+
+                <p>
+
+                    SWVGLUXE is a streetwear fashion brand
+                    built around individuality, confidence
+                    and modern urban culture.
+
+                </p>
+
+
+                <p>
+
+                    Every piece is designed to make a statement,
+                    challenge ordinary fashion and give you
+                    the freedom to express yourself.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================
+             CONTACT
+        ================================= -->
+
+        <section
+            id="contact"
+            class="contact"
+        >
+
+            <p class="section-label">
+                03 / CONNECT
+            </p>
+
+
+            <h2>
+
+                LET'S
+
+                <span>
+                    CONNECT.
+                </span>
+
+            </h2>
+
+
+            <div class="contact-details">
+
+
+                <!-- WHATSAPP -->
+
+                <div>
+
+                    <p>
+                        PHONE / WHATSAPP
+                    </p>
+
+
+                    <a
+                        href="https://wa.me/2349153206668"
+                        target="_blank"
+                    >
+
+                        09153206668
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- INSTAGRAM -->
+
+                <div>
+
+                    <p>
+                        INSTAGRAM
+                    </p>
+
+
+                    <a
+                        href="https://instagram.com/Swvgluxe00"
+                        target="_blank"
+                    >
+
+                        @Swvgluxe00
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- X -->
+
+                <div>
+
+                    <p>
+                        X
+                    </p>
+
+
+                    <a
+                        href="https://x.com/Swvgkuxe"
+                        target="_blank"
+                    >
+
+                        @Swvgkuxe
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            SWVGLUXE<span>.</span>
+
+        </div>
+
+
+        <p>
+            STREETWEAR FOR THE BOLD.
+        </p>
+
+
+        <p>
+            © 2026 SWVGLUXE. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+
+    <!-- ================================
+         WHATSAPP ORDER SCRIPT
+    ================================= -->
+
+    <script>
+
+        function orderProduct(
+            productName,
+            price,
+            sizeId,
+            colorId
+        ) {
+
+            const size =
+                document.getElementById(sizeId).value;
+
+            const color =
+                document.getElementById(colorId).value;
+
+
+            const message =
+                "Hello SWVGLUXE,%0A%0A" +
+                "I would like to order:%0A" +
+                "Product: " + productName + "%0A" +
+                "Size: " + size + "%0A" +
+                "Color: " + color + "%0A" +
+                "Price: ₦" + price.replace(
+                    /\B(?=(\d{3})+(?!\d))/g,
+                    ","
+                ) +
+                "%0A%0A" +
+                "Please let me know how to proceed with my order.";
+
+
+            const whatsappNumber =
+                "2349153206668";
+
+
+            const whatsappURL =
+                "https://wa.me/" +
+                whatsappNumber +
+                "?text=" +
+                message;
+
+
+            window.open(
+                whatsappURL,
+                "_blank"
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
