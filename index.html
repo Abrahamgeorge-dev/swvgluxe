@@ -10,12 +10,476 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>SWVGLUXE | Streetwear Fashion</title>
+    <title>SWVGLUXE | Streetwear</title>
 
     <link
         rel="stylesheet"
         href="style.css"
     >
+
+    <style>
+
+        /* =================================
+           MEMBER ACCOUNT
+        ================================= */
+
+        .member-button {
+            text-decoration: none;
+            color: #ffffff;
+            background: #e10600;
+            padding: 12px 18px;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .member-button:hover {
+            background: #ffd400;
+            color: #050505;
+        }
+
+
+        /* =================================
+           CART BUTTON
+        ================================= */
+
+        .cart-button {
+            position: relative;
+            border: 1px solid #ffffff;
+            background: transparent;
+            color: #ffffff;
+            padding: 11px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .cart-button:hover {
+            background: #ffffff;
+            color: #050505;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -9px;
+            right: -9px;
+            width: 21px;
+            height: 21px;
+            border-radius: 50%;
+            background: #e10600;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+
+        /* =================================
+           MODALS
+        ================================= */
+
+        .store-modal {
+            display: none;
+            position: fixed;
+            z-index: 5000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .store-modal.active {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #ffffff;
+            color: #050505;
+            padding: 40px;
+            position: relative;
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.5);
+            animation: modalOpen 0.3s ease;
+        }
+
+        @keyframes modalOpen {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            border: none;
+            background: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #111111;
+        }
+
+        .modal-logo {
+            font-size: 27px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+
+        .modal-logo span {
+            color: #e10600;
+        }
+
+        .modal-label {
+            color: #e10600;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .modal-box h2 {
+            font-size: 34px;
+            line-height: 1;
+            margin-bottom: 12px;
+            font-weight: 900;
+        }
+
+        .modal-description {
+            color: #666666;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+
+        /* =================================
+           MEMBER FORMS
+        ================================= */
+
+        .account-form {
+            display: none;
+        }
+
+        .account-form.active {
+            display: block;
+        }
+
+        .account-form label {
+            display: block;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            margin-top: 15px;
+            margin-bottom: 6px;
+        }
+
+        .account-input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #cccccc;
+            background: #ffffff;
+            color: #111111;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .account-input:focus {
+            border-color: #e10600;
+        }
+
+        .account-submit {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            border: none;
+            background: #050505;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .account-submit:hover {
+            background: #e10600;
+        }
+
+        .account-switch {
+            text-align: center;
+            margin-top: 20px;
+            color: #777777;
+            font-size: 12px;
+        }
+
+        .account-switch button {
+            border: none;
+            background: none;
+            color: #e10600;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .member-benefits {
+            margin-top: 25px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-left: 4px solid #ffd400;
+        }
+
+        .member-benefits p {
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .member-benefits ul {
+            padding-left: 18px;
+            color: #666666;
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+
+        /* =================================
+           CART
+        ================================= */
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 75px 1fr auto;
+            gap: 15px;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .cart-item-image {
+            width: 75px;
+            height: 75px;
+            object-fit: cover;
+        }
+
+        .cart-item-name {
+            font-size: 13px;
+            font-weight: 900;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-details {
+            color: #777777;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .cart-item-price {
+            color: #e10600;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .quantity-button {
+            width: 25px;
+            height: 25px;
+            border: 1px solid #cccccc;
+            background: #ffffff;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .quantity-number {
+            min-width: 20px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .remove-button {
+            border: none;
+            background: none;
+            color: #e10600;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .cart-total span {
+            color: #e10600;
+        }
+
+        .checkout-button {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            background: #e10600;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .checkout-button:hover {
+            background: #050505;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 40px 10px;
+            color: #777777;
+            font-size: 13px;
+        }
+
+
+        /* =================================
+           TRACK ORDER
+        ================================= */
+
+        .track-input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #cccccc;
+            outline: none;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .track-input:focus {
+            border-color: #e10600;
+        }
+
+        .track-button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 15px;
+            border: none;
+            background: #050505;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+
+        .track-button:hover {
+            background: #e10600;
+        }
+
+        .tracking-result {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-left: 4px solid #ffd400;
+        }
+
+        .tracking-result.active {
+            display: block;
+        }
+
+        .tracking-result strong {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .tracking-status {
+            color: #178a32;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+
+        /* =================================
+           ADD TO CART
+        ================================= */
+
+        .add-cart-button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 14px;
+            border: 1px solid #050505;
+            background: #ffffff;
+            color: #050505;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .add-cart-button:hover {
+            background: #ffd400;
+            border-color: #ffd400;
+        }
+
+
+        /* =================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 800px) {
+
+            .modal-box {
+                padding: 30px 22px;
+            }
+
+            .cart-item {
+                grid-template-columns: 60px 1fr;
+            }
+
+            .cart-item > div:last-child {
+                grid-column: 2;
+            }
+
+            .cart-item-image {
+                width: 60px;
+                height: 60px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -23,17 +487,20 @@
 <body>
 
 
-    <!-- ================================
+    <!-- =================================
          NAVIGATION
     ================================= -->
 
-    <header>
+    <header class="navbar">
 
-        <nav>
+        <nav class="nav-container">
 
-            <div class="logo">
-                SWVGLUXE<span>.</span>
-            </div>
+            <a
+                href="#home"
+                class="logo"
+            >
+                SWVG<span>LUXE</span>
+            </a>
 
 
             <ul class="nav-links">
@@ -45,7 +512,7 @@
                 </li>
 
                 <li>
-                    <a href="#collection">
+                    <a href="#shop">
                         Collection
                     </a>
                 </li>
@@ -65,7 +532,65 @@
             </ul>
 
 
-            <div class="nav-accent"></div>
+            <div
+                style="
+                    display:flex;
+                    gap:8px;
+                    align-items:center;
+                "
+            >
+
+                <!-- TRACK ORDER -->
+
+                <button
+                    class="cart-button"
+                    onclick="openTracking()"
+                    title="Track Order"
+                >
+                    📦
+                </button>
+
+
+                <!-- CART -->
+
+                <button
+                    class="cart-button"
+                    onclick="openCart()"
+                    title="Shopping Cart"
+                >
+
+                    🛒
+
+                    <span
+                        id="cartCount"
+                        class="cart-count"
+                    >
+                        0
+                    </span>
+
+                </button>
+
+
+                <!-- SHOP -->
+
+                <a
+                    href="#shop"
+                    class="nav-button"
+                >
+                    SHOP
+                </a>
+
+
+                <!-- MEMBER -->
+
+                <button
+                    class="member-button"
+                    onclick="openAccount()"
+                >
+                    JOIN
+                </button>
+
+            </div>
 
         </nav>
 
@@ -73,31 +598,445 @@
 
 
 
-    <!-- ================================
-         MAIN
+    <!-- =================================
+         MEMBER ACCOUNT MODAL
+    ================================= -->
+
+    <div
+        id="accountModal"
+        class="store-modal"
+    >
+
+        <div class="modal-box">
+
+            <button
+                class="modal-close"
+                onclick="closeAccount()"
+            >
+                ×
+            </button>
+
+
+            <div class="modal-logo">
+                SWVG<span>LUXE</span>
+            </div>
+
+
+            <p class="modal-label">
+                MEMBERS CLUB
+            </p>
+
+
+            <!-- LOGIN -->
+
+            <div
+                id="loginForm"
+                class="account-form active"
+            >
+
+                <h2>
+                    WELCOME BACK.
+                </h2>
+
+
+                <p class="modal-description">
+                    Sign in to your SWVGLUXE member
+                    account and stay connected.
+                </p>
+
+
+                <form
+                    onsubmit="loginMember(event)"
+                >
+
+                    <label>
+                        EMAIL ADDRESS
+                    </label>
+
+                    <input
+                        type="email"
+                        class="account-input"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+
+                    <label>
+                        PASSWORD
+                    </label>
+
+                    <input
+                        type="password"
+                        class="account-input"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+
+                    <button
+                        type="submit"
+                        class="account-submit"
+                    >
+                        LOGIN TO MY ACCOUNT →
+                    </button>
+
+                </form>
+
+
+                <div class="account-switch">
+
+                    Don't have an account?
+
+                    <button
+                        onclick="showSignup()"
+                    >
+                        JOIN SWVGLUXE
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- SIGN UP -->
+
+            <div
+                id="signupForm"
+                class="account-form"
+            >
+
+                <h2>
+                    JOIN THE FAMILY.
+                </h2>
+
+
+                <p class="modal-description">
+                    Create your SWVGLUXE member account
+                    and become part of the community.
+                </p>
+
+
+                <form
+                    onsubmit="createMember(event)"
+                >
+
+                    <label>
+                        FULL NAME
+                    </label>
+
+                    <input
+                        type="text"
+                        id="memberName"
+                        class="account-input"
+                        placeholder="Your full name"
+                        required
+                    >
+
+
+                    <label>
+                        EMAIL ADDRESS
+                    </label>
+
+                    <input
+                        type="email"
+                        class="account-input"
+                        placeholder="Your email address"
+                        required
+                    >
+
+
+                    <label>
+                        PHONE NUMBER
+                    </label>
+
+                    <input
+                        type="tel"
+                        class="account-input"
+                        placeholder="Your phone number"
+                        required
+                    >
+
+
+                    <label>
+                        CREATE PASSWORD
+                    </label>
+
+                    <input
+                        type="password"
+                        class="account-input"
+                        placeholder="Create a password"
+                        required
+                    >
+
+
+                    <button
+                        type="submit"
+                        class="account-submit"
+                    >
+                        CREATE MY ACCOUNT →
+                    </button>
+
+                </form>
+
+
+                <div class="account-switch">
+
+                    Already a member?
+
+                    <button
+                        onclick="showLogin()"
+                    >
+                        LOGIN
+                    </button>
+
+                </div>
+
+
+                <div class="member-benefits">
+
+                    <p>
+                        SWVGLUXE MEMBER BENEFITS
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            Exclusive product updates
+                        </li>
+
+                        <li>
+                            Early access to new drops
+                        </li>
+
+                        <li>
+                            Special member offers
+                        </li>
+
+                        <li>
+                            Stay connected with SWVGLUXE
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================
+         CART MODAL
+    ================================= -->
+
+    <div
+        id="cartModal"
+        class="store-modal"
+    >
+
+        <div class="modal-box">
+
+            <button
+                class="modal-close"
+                onclick="closeCart()"
+            >
+                ×
+            </button>
+
+
+            <div class="modal-logo">
+                SWVG<span>LUXE</span>
+            </div>
+
+
+            <p class="modal-label">
+                SHOPPING BAG
+            </p>
+
+
+            <h2>
+                YOUR CART.
+            </h2>
+
+
+            <div id="cartItems">
+
+                <div class="empty-cart">
+
+                    Your cart is empty.
+
+                    <br><br>
+
+                    Add something from the collection.
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="cartSummary"
+                style="display:none;"
+            >
+
+                <div class="cart-total">
+
+                    <span>
+                        TOTAL
+                    </span>
+
+                    <span id="cartTotal">
+                        ₦0
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="checkout-button"
+                    onclick="checkoutCart()"
+                >
+                    CHECKOUT VIA WHATSAPP →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================
+         TRACK ORDER MODAL
+    ================================= -->
+
+    <div
+        id="trackingModal"
+        class="store-modal"
+    >
+
+        <div class="modal-box">
+
+            <button
+                class="modal-close"
+                onclick="closeTracking()"
+            >
+                ×
+            </button>
+
+
+            <div class="modal-logo">
+                SWVG<span>LUXE</span>
+            </div>
+
+
+            <p class="modal-label">
+                ORDER SUPPORT
+            </p>
+
+
+            <h2>
+                TRACK YOUR ORDER.
+            </h2>
+
+
+            <p class="modal-description">
+
+                Enter your SWVGLUXE order number
+                below to check your order status.
+
+            </p>
+
+
+            <label
+                style="
+                    font-size:10px;
+                    font-weight:bold;
+                    letter-spacing:1.5px;
+                "
+            >
+                ORDER NUMBER
+            </label>
+
+
+            <input
+                type="text"
+                id="trackingNumber"
+                class="track-input"
+                placeholder="Example: SWV-2026-001"
+            >
+
+
+            <button
+                class="track-button"
+                onclick="trackOrder()"
+            >
+                TRACK ORDER →
+            </button>
+
+
+            <div
+                id="trackingResult"
+                class="tracking-result"
+            >
+
+                <strong>
+                    ORDER FOUND
+                </strong>
+
+                <p>
+                    Order number:
+                    <span id="displayOrderNumber"></span>
+                </p>
+
+                <p class="tracking-status">
+                    STATUS: PROCESSING
+                </p>
+
+                <p
+                    style="
+                        margin-top:8px;
+                        font-size:11px;
+                        color:#666;
+                    "
+                >
+                    Your order has been received and
+                    is currently being prepared.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================
+         MAIN WEBSITE
     ================================= -->
 
     <main>
 
 
-        <!-- ================================
-             HERO
-        ================================= -->
+        <!-- HERO -->
 
         <section
             id="home"
             class="hero"
         >
 
-            <div class="hero-shape red-shape"></div>
-
-            <div class="hero-shape yellow-shape"></div>
+            <div class="hero-overlay"></div>
 
 
             <div class="hero-content">
 
-                <p class="tagline">
-                    STREETWEAR • CULTURE • STYLE
+                <p class="hero-label">
+                    SWVGLUXE • STREETWEAR • CULTURE
                 </p>
 
 
@@ -112,7 +1051,7 @@
                 </h1>
 
 
-                <p class="hero-text">
+                <p class="hero-description">
 
                     Bold pieces. Urban energy.
                     Your identity, your statement.
@@ -120,53 +1059,71 @@
                 </p>
 
 
-                <a
-                    href="#collection"
-                    class="hero-button"
-                >
-                    SHOP COLLECTION
-                </a>
+                <div class="hero-buttons">
+
+                    <a
+                        href="#shop"
+                        class="primary-button"
+                    >
+                        SHOP COLLECTION
+                    </a>
+
+
+                    <a
+                        href="#about"
+                        class="secondary-button"
+                    >
+                        OUR STORY
+                    </a>
+
+                </div>
 
             </div>
 
 
-            <div class="hero-badge">
-
-                SWVG<br>
-                LUXE
-
+            <div class="hero-number">
+                01
             </div>
 
         </section>
 
 
 
-        <!-- ================================
-             COLLECTION
-        ================================= -->
+        <!-- COLLECTION -->
 
         <section
-            id="collection"
-            class="collection"
+            id="shop"
+            class="shop"
         >
 
+            <div class="section-header">
 
-            <div class="section-heading">
+                <div>
 
-                <p class="section-label">
-                    SWVGLUXE COLLECTION
+                    <p class="section-label">
+                        SWVGLUXE COLLECTION
+                    </p>
+
+                    <h2>
+
+                        FEATURED
+
+                        <span>
+                            PIECES.
+                        </span>
+
+                    </h2>
+
+                </div>
+
+
+                <p class="section-description">
+
+                    Discover premium streetwear
+                    created for confidence,
+                    individuality and everyday style.
+
                 </p>
-
-
-                <h2>
-
-                    FEATURED
-
-                    <span>
-                        PIECES.
-                    </span>
-
-                </h2>
 
             </div>
 
@@ -175,14 +1132,9 @@
             <div class="products">
 
 
-
-                <!-- ==========================
-                     PRODUCT 1
-                     ROUNDNECK
-                =========================== -->
+                <!-- ROUNDNECK -->
 
                 <article class="product-card">
-
 
                     <div class="product-image">
 
@@ -191,14 +1143,17 @@
                             alt="SWVGLUXE Red Roundneck"
                         >
 
-                    </div>
+                        <span class="product-tag">
+                            ESSENTIAL
+                        </span>
 
+                    </div>
 
 
                     <div class="product-info">
 
-                        <p class="product-number">
-                            01 / ESSENTIAL
+                        <p class="product-category">
+                            01 / ESSENTIALS
                         </p>
 
 
@@ -207,24 +1162,23 @@
                         </h3>
 
 
-                        <span class="product-description">
-                            Premium Streetwear Roundneck
-                        </span>
+                        <p class="product-description">
+                            Premium streetwear roundneck
+                            designed for a bold everyday look.
+                        </p>
 
 
                         <strong class="price">
-                            ₦25,000
+                            ₦45,000
                         </strong>
 
 
                         <p class="availability">
-                            ● Available
+                            ● AVAILABLE
                         </p>
 
 
-                        <!-- SIZE -->
-
-                        <label for="roundneck-size">
+                        <label>
                             SIZE
                         </label>
 
@@ -252,10 +1206,7 @@
                         </select>
 
 
-
-                        <!-- COLOR -->
-
-                        <label for="roundneck-color">
+                        <label>
                             COLOR
                         </label>
 
@@ -279,21 +1230,31 @@
                         </select>
 
 
-
                         <button
                             class="order-button"
                             onclick="orderProduct(
                                 'SWVGLUXE Roundneck',
-                                '25000',
+                                45000,
                                 'roundneck-size',
                                 'roundneck-color'
                             )"
                         >
-
                             ORDER NOW →
-
                         </button>
 
+
+                        <button
+                            class="add-cart-button"
+                            onclick="addToCart(
+                                'SWVGLUXE Roundneck',
+                                45000,
+                                'images/redroundneck.jpg',
+                                'roundneck-size',
+                                'roundneck-color'
+                            )"
+                        >
+                            🛒 ADD TO CART
+                        </button>
 
                     </div>
 
@@ -301,13 +1262,9 @@
 
 
 
-                <!-- ==========================
-                     PRODUCT 2
-                     ARMLESS
-                =========================== -->
+                <!-- ARMLESS -->
 
                 <article class="product-card">
-
 
                     <div class="product-image">
 
@@ -316,13 +1273,16 @@
                             alt="SWVGLUXE Armless"
                         >
 
-                    </div>
+                        <span class="product-tag">
+                            URBAN
+                        </span>
 
+                    </div>
 
 
                     <div class="product-info">
 
-                        <p class="product-number">
+                        <p class="product-category">
                             02 / URBAN
                         </p>
 
@@ -332,24 +1292,23 @@
                         </h3>
 
 
-                        <span class="product-description">
-                            Urban Armless Collection
-                        </span>
+                        <p class="product-description">
+                            Clean urban armless design
+                            built for effortless street style.
+                        </p>
 
 
                         <strong class="price">
-                            ₦20,000
+                            ₦30,000
                         </strong>
 
 
                         <p class="availability">
-                            ● Available
+                            ● AVAILABLE
                         </p>
 
 
-                        <!-- SIZE -->
-
-                        <label for="armless-size">
+                        <label>
                             SIZE
                         </label>
 
@@ -377,10 +1336,7 @@
                         </select>
 
 
-
-                        <!-- COLOR -->
-
-                        <label for="armless-color">
+                        <label>
                             COLOR
                         </label>
 
@@ -404,21 +1360,31 @@
                         </select>
 
 
-
                         <button
                             class="order-button"
                             onclick="orderProduct(
                                 'SWVGLUXE Armless',
-                                '20000',
+                                30000,
                                 'armless-size',
                                 'armless-color'
                             )"
                         >
-
                             ORDER NOW →
-
                         </button>
 
+
+                        <button
+                            class="add-cart-button"
+                            onclick="addToCart(
+                                'SWVGLUXE Armless',
+                                30000,
+                                'images/armless.jpg',
+                                'armless-size',
+                                'armless-color'
+                            )"
+                        >
+                            🛒 ADD TO CART
+                        </button>
 
                     </div>
 
@@ -426,13 +1392,9 @@
 
 
 
-                <!-- ==========================
-                     PRODUCT 3
-                     LONG SLEEVE
-                =========================== -->
+                <!-- LONG SLEEVE -->
 
                 <article class="product-card">
-
 
                     <div class="product-image">
 
@@ -441,13 +1403,16 @@
                             alt="SWVGLUXE Long Sleeve"
                         >
 
-                    </div>
+                        <span class="product-tag">
+                            PREMIUM
+                        </span>
 
+                    </div>
 
 
                     <div class="product-info">
 
-                        <p class="product-number">
+                        <p class="product-category">
                             03 / PREMIUM
                         </p>
 
@@ -457,24 +1422,23 @@
                         </h3>
 
 
-                        <span class="product-description">
-                            Premium Long Sleeve Streetwear
-                        </span>
+                        <p class="product-description">
+                            Premium long sleeve streetwear
+                            with a clean modern finish.
+                        </p>
 
 
                         <strong class="price">
-                            ₦30,000
+                            ₦40,000
                         </strong>
 
 
                         <p class="availability">
-                            ● Available
+                            ● AVAILABLE
                         </p>
 
 
-                        <!-- SIZE -->
-
-                        <label for="longsleeve-size">
+                        <label>
                             SIZE
                         </label>
 
@@ -502,10 +1466,7 @@
                         </select>
 
 
-
-                        <!-- COLOR -->
-
-                        <label for="longsleeve-color">
+                        <label>
                             COLOR
                         </label>
 
@@ -529,21 +1490,31 @@
                         </select>
 
 
-
                         <button
                             class="order-button"
                             onclick="orderProduct(
                                 'SWVGLUXE Long Sleeve',
-                                '30000',
+                                40000,
                                 'longsleeve-size',
                                 'longsleeve-color'
                             )"
                         >
-
                             ORDER NOW →
-
                         </button>
 
+
+                        <button
+                            class="add-cart-button"
+                            onclick="addToCart(
+                                'SWVGLUXE Long Sleeve',
+                                40000,
+                                'images/longsleeve.jpg',
+                                'longsleeve-size',
+                                'longsleeve-color'
+                            )"
+                        >
+                            🛒 ADD TO CART
+                        </button>
 
                     </div>
 
@@ -556,35 +1527,25 @@
 
 
 
-        <!-- ================================
-             BRAND STATEMENT
-        ================================= -->
+        <!-- STATEMENT -->
 
         <section class="statement">
 
-            <div class="statement-line"></div>
-
+            <p>
+                WEAR THE
+            </p>
 
             <p>
-
-                WEAR THE
-
                 <span>
                     STATEMENT.
                 </span>
-
             </p>
-
-
-            <div class="statement-line"></div>
 
         </section>
 
 
 
-        <!-- ================================
-             ABOUT
-        ================================= -->
+        <!-- ABOUT -->
 
         <section
             id="about"
@@ -615,21 +1576,25 @@
 
 
                 <p>
-
                     SWVGLUXE is a streetwear fashion brand
                     built around individuality, confidence
                     and modern urban culture.
-
                 </p>
 
 
                 <p>
-
                     Every piece is designed to make a statement,
                     challenge ordinary fashion and give you
                     the freedom to express yourself.
-
                 </p>
+
+
+                <a
+                    href="#contact"
+                    class="about-button"
+                >
+                    CONNECT WITH US →
+                </a>
 
             </div>
 
@@ -637,118 +1602,114 @@
 
 
 
-        <!-- ================================
-             CONTACT
-        ================================= -->
+        <!-- CONTACT -->
 
         <section
             id="contact"
             class="contact"
         >
 
-            <p class="section-label">
-                03 / CONNECT
-            </p>
+            <div class="contact-container">
+
+                <p class="section-label">
+                    03 / CONTACT
+                </p>
 
 
-            <h2>
+                <h2>
 
-                LET'S
+                    LET'S
 
-                <span>
-                    CONNECT.
-                </span>
+                    <span>
+                        CONNECT.
+                    </span>
 
-            </h2>
-
-
-            <div class="contact-details">
+                </h2>
 
 
-                <!-- WHATSAPP -->
-
-                <div>
-
-                    <p>
-                        PHONE / WHATSAPP
-                    </p>
+                <div class="contact-grid">
 
 
-                    <a
-                        href="https://wa.me/2349153206668"
-                        target="_blank"
-                    >
+                    <!-- WHATSAPP -->
 
-                        09153206668
+                    <div class="contact-card">
 
-                    </a>
+                        <p>
+                            PHONE / WHATSAPP
+                        </p>
+
+
+                        <a
+                            href="https://wa.me/2349153206668"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            09153206668
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- INSTAGRAM -->
+
+                    <div class="contact-card">
+
+                        <p>
+                            INSTAGRAM
+                        </p>
+
+
+                        <a
+                            href="https://www.instagram.com/Swvgluxe00/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            @Swvgluxe00
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- X / TWITTER -->
+
+                    <div class="contact-card">
+
+                        <p>
+                            X / TWITTER
+                        </p>
+
+
+                        <a
+                            href="https://x.com/Swvgkuxe"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            @Swvgkuxe
+                        </a>
+
+                    </div>
+
 
                 </div>
-
-
-
-                <!-- INSTAGRAM -->
-
-                <div>
-
-                    <p>
-                        INSTAGRAM
-                    </p>
-
-
-                    <a
-                        href="https://instagram.com/Swvgluxe00"
-                        target="_blank"
-                    >
-
-                        @Swvgluxe00
-
-                    </a>
-
-                </div>
-
-
-
-                <!-- X -->
-
-                <div>
-
-                    <p>
-                        X
-                    </p>
-
-
-                    <a
-                        href="https://x.com/Swvgkuxe"
-                        target="_blank"
-                    >
-
-                        @Swvgkuxe
-
-                    </a>
-
-                </div>
-
 
             </div>
 
         </section>
 
-
     </main>
 
 
 
-    <!-- ================================
+    <!-- =================================
          FOOTER
     ================================= -->
 
     <footer>
 
         <div class="footer-logo">
-
-            SWVGLUXE<span>.</span>
-
+            SWVG<span>LUXE</span>
         </div>
 
 
@@ -758,54 +1719,497 @@
 
 
         <p>
-            © 2026 SWVGLUXE. All Rights Reserved.
+            © 2026 SWVGLUXE. ALL RIGHTS RESERVED.
         </p>
 
     </footer>
 
 
 
-    <!-- ================================
-         WHATSAPP ORDER SCRIPT
+    <!-- =================================
+         JAVASCRIPT
     ================================= -->
 
     <script>
 
-        function orderProduct(
+        let cart = [];
+
+
+        /* =================================
+           ACCOUNT
+        ================================= */
+
+        function openAccount() {
+
+            document
+                .getElementById("accountModal")
+                .classList
+                .add("active");
+
+        }
+
+
+        function closeAccount() {
+
+            document
+                .getElementById("accountModal")
+                .classList
+                .remove("active");
+
+        }
+
+
+        function showLogin() {
+
+            document
+                .getElementById("signupForm")
+                .classList
+                .remove("active");
+
+
+            document
+                .getElementById("loginForm")
+                .classList
+                .add("active");
+
+        }
+
+
+        function showSignup() {
+
+            document
+                .getElementById("loginForm")
+                .classList
+                .remove("active");
+
+
+            document
+                .getElementById("signupForm")
+                .classList
+                .add("active");
+
+        }
+
+
+        function createMember(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document
+                .getElementById("memberName")
+                .value;
+
+
+            alert(
+                "Welcome to SWVGLUXE, " +
+                name +
+                "! Your membership request has been received."
+            );
+
+
+            showLogin();
+
+        }
+
+
+        function loginMember(event) {
+
+            event.preventDefault();
+
+
+            alert(
+                "Welcome back to SWVGLUXE! " +
+                "Real account authentication will be connected soon."
+            );
+
+        }
+
+
+        /* =================================
+           CART
+        ================================= */
+
+        function addToCart(
             productName,
             price,
+            image,
             sizeId,
             colorId
         ) {
 
             const size =
-                document.getElementById(sizeId).value;
+                document
+                .getElementById(sizeId)
+                .value;
+
 
             const color =
-                document.getElementById(colorId).value;
+                document
+                .getElementById(colorId)
+                .value;
 
 
-            const message =
+            const existingItem =
+                cart.find(
+                    item =>
+                        item.name === productName &&
+                        item.size === size &&
+                        item.color === color
+                );
+
+
+            if (existingItem) {
+
+                existingItem.quantity++;
+
+            } else {
+
+                cart.push({
+
+                    name: productName,
+                    price: price,
+                    image: image,
+                    size: size,
+                    color: color,
+                    quantity: 1
+
+                });
+
+            }
+
+
+            updateCart();
+
+
+            alert(
+                productName +
+                " has been added to your cart."
+            );
+
+        }
+
+
+        function updateCart() {
+
+            const cartItems =
+                document.getElementById(
+                    "cartItems"
+                );
+
+
+            const cartCount =
+                document.getElementById(
+                    "cartCount"
+                );
+
+
+            const cartSummary =
+                document.getElementById(
+                    "cartSummary"
+                );
+
+
+            const cartTotal =
+                document.getElementById(
+                    "cartTotal"
+                );
+
+
+            let totalItems = 0;
+
+            let totalPrice = 0;
+
+
+            if (cart.length === 0) {
+
+                cartItems.innerHTML = `
+
+                    <div class="empty-cart">
+
+                        Your cart is empty.
+
+                        <br><br>
+
+                        Add something from the collection.
+
+                    </div>
+
+                `;
+
+
+                cartSummary.style.display =
+                    "none";
+
+
+                cartCount.textContent =
+                    "0";
+
+
+                return;
+
+            }
+
+
+            cartItems.innerHTML = "";
+
+
+            cart.forEach(
+                (item, index) => {
+
+                    totalItems +=
+                        item.quantity;
+
+
+                    totalPrice +=
+                        item.price *
+                        item.quantity;
+
+
+                    const itemElement =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    itemElement.className =
+                        "cart-item";
+
+
+                    itemElement.innerHTML = `
+
+                        <img
+                            src="${item.image}"
+                            class="cart-item-image"
+                            alt="${item.name}"
+                        >
+
+                        <div>
+
+                            <div class="cart-item-name">
+                                ${item.name}
+                            </div>
+
+                            <div class="cart-item-details">
+
+                                Size: ${item.size}
+
+                                <br>
+
+                                Color: ${item.color}
+
+                            </div>
+
+                            <div class="cart-item-price">
+
+                                ₦${item.price.toLocaleString()}
+
+                            </div>
+
+                            <div class="quantity-controls">
+
+                                <button
+                                    class="quantity-button"
+                                    onclick="changeQuantity(
+                                        ${index},
+                                        -1
+                                    )"
+                                >
+                                    −
+                                </button>
+
+                                <span
+                                    class="quantity-number"
+                                >
+                                    ${item.quantity}
+                                </span>
+
+                                <button
+                                    class="quantity-button"
+                                    onclick="changeQuantity(
+                                        ${index},
+                                        1
+                                    )"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <button
+                            class="remove-button"
+                            onclick="removeFromCart(${index})"
+                        >
+                            REMOVE
+                        </button>
+
+                    `;
+
+
+                    cartItems.appendChild(
+                        itemElement
+                    );
+
+                }
+            );
+
+
+            cartCount.textContent =
+                totalItems;
+
+
+            cartTotal.textContent =
+                "₦" +
+                totalPrice.toLocaleString();
+
+
+            cartSummary.style.display =
+                "block";
+
+        }
+
+
+        function changeQuantity(
+            index,
+            change
+        ) {
+
+            cart[index].quantity +=
+                change;
+
+
+            if (
+                cart[index].quantity <= 0
+            ) {
+
+                cart.splice(
+                    index,
+                    1
+                );
+
+            }
+
+
+            updateCart();
+
+        }
+
+
+        function removeFromCart(index) {
+
+            cart.splice(
+                index,
+                1
+            );
+
+
+            updateCart();
+
+        }
+
+
+        function openCart() {
+
+            updateCart();
+
+
+            document
+                .getElementById("cartModal")
+                .classList
+                .add("active");
+
+        }
+
+
+        function closeCart() {
+
+            document
+                .getElementById("cartModal")
+                .classList
+                .remove("active");
+
+        }
+
+
+        /* =================================
+           WHATSAPP CHECKOUT
+        ================================= */
+
+        function checkoutCart() {
+
+            if (
+                cart.length === 0
+            ) {
+
+                alert(
+                    "Your cart is empty."
+                );
+
+                return;
+
+            }
+
+
+            let message =
                 "Hello SWVGLUXE,%0A%0A" +
-                "I would like to order:%0A" +
-                "Product: " + productName + "%0A" +
-                "Size: " + size + "%0A" +
-                "Color: " + color + "%0A" +
-                "Price: ₦" + price.replace(
-                    /\B(?=(\d{3})+(?!\d))/g,
-                    ","
-                ) +
+                "I would like to place an order:%0A%0A";
+
+
+            let total = 0;
+
+
+            cart.forEach(
+                item => {
+
+                    const itemTotal =
+                        item.price *
+                        item.quantity;
+
+
+                    total +=
+                        itemTotal;
+
+
+                    message +=
+
+                        "Product: " +
+                        item.name +
+                        "%0A" +
+
+                        "Size: " +
+                        item.size +
+                        "%0A" +
+
+                        "Color: " +
+                        item.color +
+                        "%0A" +
+
+                        "Quantity: " +
+                        item.quantity +
+                        "%0A" +
+
+                        "Price: ₦" +
+                        itemTotal.toLocaleString() +
+                        "%0A%0A";
+
+                }
+            );
+
+
+            message +=
+
+                "TOTAL: ₦" +
+                total.toLocaleString() +
                 "%0A%0A" +
-                "Please let me know how to proceed with my order.";
 
-
-            const whatsappNumber =
-                "2349153206668";
+                "Please confirm my order and provide the next steps.";
 
 
             const whatsappURL =
-                "https://wa.me/" +
-                whatsappNumber +
+                "https://wa.me/2349153206668" +
                 "?text=" +
                 message;
 
@@ -816,6 +2220,167 @@
             );
 
         }
+
+
+        /* =================================
+           DIRECT ORDER
+        ================================= */
+
+        function orderProduct(
+            productName,
+            price,
+            sizeId,
+            colorId
+        ) {
+
+            const size =
+                document
+                .getElementById(sizeId)
+                .value;
+
+
+            const color =
+                document
+                .getElementById(colorId)
+                .value;
+
+
+            const message =
+
+                "Hello SWVGLUXE,%0A%0A" +
+
+                "I would like to order:%0A%0A" +
+
+                "Product: " +
+                productName +
+                "%0A" +
+
+                "Size: " +
+                size +
+                "%0A" +
+
+                "Color: " +
+                color +
+                "%0A" +
+
+                "Price: ₦" +
+                price.toLocaleString() +
+                "%0A%0A" +
+
+                "Please let me know how to proceed with my order.";
+
+
+            const whatsappURL =
+
+                "https://wa.me/2349153206668" +
+                "?text=" +
+                message;
+
+
+            window.open(
+                whatsappURL,
+                "_blank"
+            );
+
+        }
+
+
+        /* =================================
+           TRACK ORDER
+        ================================= */
+
+        function openTracking() {
+
+            document
+                .getElementById("trackingModal")
+                .classList
+                .add("active");
+
+        }
+
+
+        function closeTracking() {
+
+            document
+                .getElementById("trackingModal")
+                .classList
+                .remove("active");
+
+        }
+
+
+        function trackOrder() {
+
+            const orderNumber =
+                document
+                .getElementById(
+                    "trackingNumber"
+                )
+                .value
+                .trim();
+
+
+            if (
+                orderNumber === ""
+            ) {
+
+                alert(
+                    "Please enter your order number."
+                );
+
+                return;
+
+            }
+
+
+            document
+                .getElementById(
+                    "displayOrderNumber"
+                )
+                .textContent =
+                orderNumber;
+
+
+            document
+                .getElementById(
+                    "trackingResult"
+                )
+                .classList
+                .add("active");
+
+        }
+
+
+        /* =================================
+           CLOSE MODALS
+        ================================= */
+
+        document
+            .querySelectorAll(".store-modal")
+            .forEach(
+                modal => {
+
+                    modal.addEventListener(
+                        "click",
+                        function(event) {
+
+                            if (
+                                event.target ===
+                                this
+                            ) {
+
+                                this.classList
+                                    .remove(
+                                        "active"
+                                    );
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
 
     </script>
 
